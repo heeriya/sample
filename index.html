@@ -7,12 +7,46 @@
 
 <h2>Student Registration</h2>
 
-<form>
-Name: <input type="text"><br><br>
-Email: <input type="text"><br><br>
-Department: <input type="text"><br><br>
+<form onsubmit="saveStudent(event)">
+
+Name:
+<input type="text" id="name" required><br><br>
+
+Email:
+<input type="text" id="email" required><br><br>
+
+Department:
+<input type="text" id="department" required><br><br>
+
 <button type="submit">Register</button>
+
 </form>
+
+<script>
+
+async function saveStudent(event){
+
+event.preventDefault()
+
+const data = {
+name: document.getElementById("name").value,
+email: document.getElementById("email").value,
+department: document.getElementById("department").value
+}
+
+await fetch("PASTE_YOUR_API_URL_HERE", {
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body: JSON.stringify(data)
+})
+
+alert("Student saved successfully!")
+
+}
+
+</script>
 
 </body>
 </html>
